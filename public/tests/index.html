@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tests de CSV Ajax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="javascript/mocha.js"></script>
+    <script src="javascript/chai.js"></script>
+    <script src="javascript/blanket.js"
+           data-cover-adapter="javascript/mocha-blanket.js"></script>
+    <script src="javascript/calculate.js" data-cover></script>
+
+    <script>mocha.setup('bdd');</script>
+    <script src="javascript/tests.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

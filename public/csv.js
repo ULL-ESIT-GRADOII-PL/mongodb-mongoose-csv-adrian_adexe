@@ -24,11 +24,11 @@ const fillTable = (data) => {
 
 /* Volcar en la textarea de entrada
  * #original el contenido del fichero fileName */
-const dump = (fileName) => {
+/*const dump = (fileName) => {
   $.get(fileName, function (data) {
       $("#original").val(data);
   });
-};
+};*/
 
 const handleFileSelect = (evt) => {
   evt.stopPropagation();
@@ -84,7 +84,7 @@ $(document).ready(() => {
    
    /* boton para guardar el contenido del textarea */
     $("#save").click( () => { 
-      var dataString = $('#original').val();
+      let dataString = $('#original').val();
         $.get("/mongo/input4",
         {
             text: dataString
@@ -94,7 +94,12 @@ $(document).ready(() => {
 
    /* botones para rellenar el textarea */
    $('button.example').each( (_,y) => {
-     $(y).click( () => { dump(`${$(y).text()}.txt`); });
+     $(y).click( () => { /*dump('hola');*/ 
+       $.get("/findCsv",{name: "input1"},
+       (readData) => {
+         $("#original").val(readData[0].text);
+       });
+     });
    });
 
     // Setup the drag and drop listeners.

@@ -30,12 +30,6 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-// Supongamos que se visita con GET la ruta /mongo/input1
-app.get('/models/:ejemplo', function(req, res) {
-  console.log(req.params.ejemplo); /* input1 */
-  /* ... Consultar la base de datos y retornar contenidos de input1 ... */
-});
-
 app.get('/mongo/:variable', function(req, res) {
     //console.log('valor req.params: ' + req.params.variable);
     //console.log('Valor req:' + req.query.text);
@@ -45,12 +39,6 @@ app.get('/mongo/:variable', function(req, res) {
         if (files.length > 3) {
             CSV.find({name: files[3].name}).remove().exec();
             
-            /*let newCSV = new CSV({name: req.params.variable, text: req.query.text});
-            newCSV.save(function(err){ 
-              if(err) resp.send('ERROR!');
-              res.send('SUCCESS!');
-              console.log("Elemento guardado con éxito.")
-            });*/
         }
             let newCSV = new CSV({name: req.params.variable, text: req.query.text});
             newCSV.save(function(err){ 
@@ -59,4 +47,13 @@ app.get('/mongo/:variable', function(req, res) {
               console.log("Elemento guardado con éxito.")
             });
     });
+});
+
+app.get('/findCsv', function(req, res) {
+  console.log("req: " + req.query.name)
+  CSV.find({name: req.query.name}, 
+        function(err, file) {
+            console.log(file);
+            res.send(file);
+        });
 });

@@ -81,6 +81,17 @@ $(document).ready(() => {
           'json'
         );
    });
+   
+   /* boton para guardar el contenido del textarea */
+    $("#save").click( () => { 
+      var dataString = $('#original').val();
+      console.log('Valor dataString: '+ dataString);
+        $.get("/mongo",
+        {
+            text: dataString
+        });
+        return false;
+    });
 
    /* botones para rellenar el textarea */
    $('button.example').each( (_,y) => {

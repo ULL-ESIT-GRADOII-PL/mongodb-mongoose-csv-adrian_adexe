@@ -85,8 +85,7 @@ $(document).ready(() => {
    /* boton para guardar el contenido del textarea */
     $("#save").click( () => { 
       var dataString = $('#original').val();
-      console.log('Valor dataString: '+ dataString);
-        $.get("/mongo",
+        $.get("/mongo/input4",
         {
             text: dataString
         });

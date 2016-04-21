@@ -36,11 +36,27 @@ app.get('/models/:ejemplo', function(req, res) {
   /* ... Consultar la base de datos y retornar contenidos de input1 ... */
 });
 
-app.get('/mongo', function(req, resp) {
-    console.log('Valor req:' + req.query.text);
-    var newCSV = new CSV({name: 'file2', text: req.query.text});
-    newCSV.save(function(err){ 
-        if(err) resp.send('ERROR!');
-        resp.send('SUCCESS!');
+app.get('/mongo/:variable', function(req, res) {
+    //console.log('valor req.params: ' + req.params.variable);
+    //console.log('Valor req:' + req.query.text);
+    CSV.find({}, function(err, files) {
+        if (err)
+            return err;
+        if (files.length > 3) {
+            CSV.find({name: files[3].name}).remove().exec();
+            
+            /*let newCSV = new CSV({name: req.params.variable, text: req.query.text});
+            newCSV.save(function(err){ 
+              if(err) resp.send('ERROR!');
+              res.send('SUCCESS!');
+              console.log("Elemento guardado con éxito.")
+            });*/
+        }
+            let newCSV = new CSV({name: req.params.variable, text: req.query.text});
+            newCSV.save(function(err){ 
+              if(err) resp.send('ERROR!');
+              res.send('SUCCESS!');
+              console.log("Elemento guardado con éxito.")
+            });
     });
 });

@@ -6,6 +6,7 @@
 
   mongoose.connect('mongodb://localhost/csv');
 
+  
   const Schema = mongoose.Schema;
 
   const csvSchema = Schema({
@@ -14,6 +15,17 @@
   });
 
   const CSV  = mongoose.model('CSV', csvSchema);
+  
+  if (CSV) {
+    CSV.remove(onRemoved);
+  }
+
+  function onRemoved (err) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+  }
 
   let input1 = new CSV({ name: 'input1', text: '"producto",           "precio"\n"camisa",             "4,3"\n"libro de O\"Reilly", "7,2"' });
   let input2 = new CSV({ name: 'input2', text: '"producto",           "precio"  "fecha"\n"camisa",             "4,3",    "14/01"\n"libro de O\"Reilly", "7,2"     "13/02"'})

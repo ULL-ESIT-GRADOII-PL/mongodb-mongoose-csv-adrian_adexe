@@ -14,3 +14,7 @@ table.center {
 .output tr:nth-child(odd)    { background-color:#eee; }
 .output tr:nth-child(even)   { background-color:#00FF66; }
 .error td{ background-color: red; }
+
+.hidden {
+	display: none;
+}

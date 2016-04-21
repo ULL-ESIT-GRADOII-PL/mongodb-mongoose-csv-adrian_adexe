@@ -48,6 +48,16 @@ app.get('/mongo/:variable', function(req, res) {
     });
 });
 
+app.get('/showButtons', function(req, res) {
+    CSV.find({}, function(err, file) {
+        if (err)
+            return err;
+        res.send(file);
+    });
+});
+
+
+
 app.get('/findCsv', function(req, res) {
   console.log("req: " + req.query.name)
   CSV.find({name: req.query.name}, 
@@ -56,3 +66,4 @@ app.get('/findCsv', function(req, res) {
             res.send(file);
         });
 });
+

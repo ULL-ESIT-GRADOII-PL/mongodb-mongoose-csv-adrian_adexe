@@ -103,6 +103,12 @@ $(document).ready(() => {
        });
      });
    });
+   
+   $.get("/showButtons", {}, (readData) => {
+            for (var i = 0; i < readData.length; i++) {
+                    $('button.example').get(i).className = "example";
+            }
+        });
 
     // Setup the drag and drop listeners.
     //var dropZone = document.getElementsByClassName('drop_zone')[0];

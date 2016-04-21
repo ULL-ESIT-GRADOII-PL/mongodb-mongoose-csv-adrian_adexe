@@ -95,7 +95,7 @@ $(document).ready(() => {
    /* botones para rellenar el textarea */
    $('button.example').each( (_,y) => {
      $(y).click( () => { /*dump('hola');*/ 
-       $.get("/findCsv",{name: "input1"},
+       $.get("/findCsv",{name: $(y).text()},
        (readData) => {
          $("#original").val(readData[0].text);
        });

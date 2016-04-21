@@ -67,6 +67,7 @@ const handleDragOver = (evt) => {
 }
 
 $(document).ready(() => {
+    let contador = 3;
     let original = document.getElementById("original");
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
@@ -85,10 +86,11 @@ $(document).ready(() => {
    /* boton para guardar el contenido del textarea */
     $("#save").click( () => { 
       let dataString = $('#original').val();
-        $.get("/mongo/input4",
+        $.get("/mongo/input" + (contador % 4),
         {
-            text: dataString
-        });
+            text: dataString,
+            cont: contador++
+        })
         return false;
     });
 

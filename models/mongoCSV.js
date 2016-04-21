@@ -27,20 +27,20 @@
     }
   }
 
-  let input1 = new CSV({ name: 'input1', text: '"producto",           "precio"\n"camisa",             "4,3"\n"libro de O\"Reilly", "7,2"' });
-  let input2 = new CSV({ name: 'input2', text: '"producto",           "precio"  "fecha"\n"camisa",             "4,3",    "14/01"\n"libro de O\"Reilly", "7,2"     "13/02"'})
-  let input3 = new CSV({ name: 'input3', text: '"edad",  "sueldo",  "peso"\n,         "6000€",  "90Kg"\n47,       "3000€",  "100Kg"'})
+  let input0 = new CSV({ name: 'input0', text: '"producto",           "precio"\n"camisa",             "4,3"\n"libro de O\"Reilly", "7,2"' });
+  let input1 = new CSV({ name: 'input1', text: '"producto",           "precio"  "fecha"\n"camisa",             "4,3",    "14/01"\n"libro de O\"Reilly", "7,2"     "13/02"'})
+  let input2 = new CSV({ name: 'input2', text: '"edad",  "sueldo",  "peso"\n,         "6000€",  "90Kg"\n47,       "3000€",  "100Kg"'})
   
 
-  let p1 = input1.save(function (err, file1) {
+  let p1 = input0.save(function (err, file1) {
     if (err) return console.error(err);
   });
   
-  let p2 = input2.save(function (err, file1) {
+  let p2 = input1.save(function (err, file1) {
     if (err) return console.error(err);
   });
   
-  let p3 = input3.save(function (err, file1) {
+  let p3 = input2.save(function (err, file1) {
     if (err) return console.error(err);
   });
   
